@@ -284,8 +284,14 @@ casts and declarations are fontified.  Used on level 2 and higher."
           ;; merge with cc-mode defaults
           (c-lang-const c-basic-matchers-after)
 
+          ;; Identifiers with preceeding '.'
+          `(("\\.\\([a-zA-Z0-9_]+\\)" 1 font-lock-variable-name-face t))
+
           ;; function names
           `(("\\.\\([A-Za-z0-9_]+\\)[<(]" 1 font-lock-function-name-face t))
+
+          ;;  names
+          `(("\\(new\\)\\s *\\([A-Za-z0-9_]+\\)[<(]" 1 font-lock-type-name-face t))
           ))
 
 (defcustom csharp-font-lock-extra-types
