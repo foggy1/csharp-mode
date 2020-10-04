@@ -415,13 +415,11 @@ casts and declarations are fontified.  Used on level 2 and higher."
 	      "\\("
 	      (concat "\\sw\\|\\s \\|[=\n\r*.:]\\|"
 		      "\"[^\"]*\"\\|'[^']*'")
-	      "\\)*>")
-     0 ,c-doc-markup-face-name prepend nil)
+	      "\\)*/?>")
+     0 font-lock-type-face prepend nil)
+    ("\".*\"" 0 font-lock-string-face prepend nil)
     ("&\\(\\sw\\|[.:]\\)+;"		; XML entities.
-     0 ,c-doc-markup-face-name prepend nil)
-    (,(lambda (limit)
-	(c-find-invalid-doc-markup "[<>&]\\|{@" limit))
-     0 'font-lock-warning-face prepend nil)))
+     0 ,c-doc-markup-face-name prepend nil)))
 
 (defconst codedoc-font-lock-keywords
   `((,(lambda (limit)
