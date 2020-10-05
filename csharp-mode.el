@@ -417,6 +417,7 @@ casts and declarations are fontified.  Used on level 2 and higher."
 		      "\"[^\"]*\"\\|'[^']*'")
 	      "\\)*/?>")
      0 font-lock-type-face prepend nil)
+    ("[a-zA-Z0-9_]+=" 0 font-lock-variable-name-face prepend nil)
     ("\".*\"" 0 font-lock-string-face prepend nil)
     ("&\\(\\sw\\|[.:]\\)+;"		; XML entities.
      0 ,c-doc-markup-face-name prepend nil)))
