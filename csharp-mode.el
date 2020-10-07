@@ -284,14 +284,17 @@ casts and declarations are fontified.  Used on level 2 and higher."
           ;; merge with cc-mode defaults
           (c-lang-const c-basic-matchers-after)
 
-          ;; Identifiers with preceeding '.'
-          `(("\\.\\([a-zA-Z0-9_]+\\)" 1 font-lock-variable-name-face t))
-
           ;; function names
-          `(("\\.\\([A-Za-z0-9_]+\\)[<(]" 1 font-lock-function-name-face t))
+          `(("\\([A-Z][A-Za-z0-9_]+\\)[<(]" 1 font-lock-function-name-face t))
+
+          ;; class names with inheritance
+          `(("\\([A-Z][A-Za-z0-9_]+\\)\\s *:" 1 font-lock-type-face t))
+
+          ;; Identifiers inside attributes
+          `(("\\[\\([A-Z[\\)\\([a-zA-Z0-9_]+\\)" 1 font-lock-type-face t))
 
           ;;  names
-          `(("\\(new\\)\\s *\\([A-Za-z0-9_]+\\)[<(]" 1 font-lock-type-name-face t))
+          `(("new\\s *\\([A-Za-z0-9_]+\\)[<(]" 1 font-lock-type-face t))
           ))
 
 (defcustom csharp-font-lock-extra-types
@@ -417,8 +420,8 @@ casts and declarations are fontified.  Used on level 2 and higher."
 		      "\"[^\"]*\"\\|'[^']*'")
 	      "\\)*/?>")
      0 font-lock-type-face prepend nil)
-    ("[a-zA-Z0-9_]+=" 0 font-lock-variable-name-face prepend nil)
-    ("\".*\"" 0 font-lock-string-face prepend nil)
+    ;; ("\\([a-zA-Z0-9_]+\\)=" 0 font-lock-variable-name-face prepend nil)
+    ;; ("\".*\"" 0 font-lock-string-face prepend nil)
     ("&\\(\\sw\\|[.:]\\)+;"		; XML entities.
      0 ,c-doc-markup-face-name prepend nil)))
 
